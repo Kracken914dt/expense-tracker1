@@ -14,8 +14,15 @@ dotenv.config();
 const app = express();
 
 app.use(express.json());
-// Modo pruebas: permite requests desde cualquier origen.
-app.use(cors({ origin: true, credentials: true }));
+// CORS totalmente abierto para pruebas: cualquier origen, sin credenciales.
+app.use(
+  cors({
+    origin: "*",
+    credentials: false,
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  }),
+);
 app.use(morgan("dev"));
 
 app.get("/", (req, res) => {
