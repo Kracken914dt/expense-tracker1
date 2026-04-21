@@ -29,6 +29,10 @@ app.get("/", (req, res) => {
   res.json({ status: "ok", service: "expense-tracker-api" });
 });
 
+app.get("/health", (req, res) => {
+  res.status(200).json({ status: "ok" });
+});
+
 const routeMounts = [
   ["auth", authRoutes],
   ["expenses", expenseRoutes],
